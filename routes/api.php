@@ -15,3 +15,5 @@ use Illuminate\Http\Request;
 
 Route::resource('/items', 'ItemController', ['except' => ['create', 'edit']]);
 
+Route::resource('/rest', 'RestdataController');
+
