@@ -25,7 +25,7 @@ class RestdataController extends Controller
      */
     public function create()
     {
-        //
+        return view('rest.create');
     }
 
     /**
@@ -34,9 +34,12 @@ class RestdataController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Restdata $restdata)
+    public function store(Restdata $restdata, Request $request)
     {
-        //
+        $form = $request->all();
+        unset($form['_token']);
+        $restdata->fill($form)->save();
+        return redirect()->route('rest.index');
     }
 
     /**
