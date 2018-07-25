@@ -11,4 +11,4 @@
 |
 */
 
-Route::resource('rest','RestdataController', ['only' => ['create']]);
+Route::resource('rest','RestdataController', ['only' => ['create', 'edit']]);

@@ -60,9 +60,10 @@ class RestdataController extends Controller
      * @param  \App\Restdata  $restdata
      * @return \Illuminate\Http\Response
      */
-    public function edit(Restdata $restdata)
+    public function edit(Restdata $restdata, $id)
     {
-        //
+        $item = Restdata::find($id);
+        return view('rest.edit')->with(['rest' => $item]);
     }
 
     /**
@@ -72,9 +73,19 @@ class RestdataController extends Controller
      * @param  \App\Restdata  $restdata
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Restdata $restdata)
+    public function update(Request $request)
     {
-        //
+        $restdata = Restdata::find($request->id);
+        if ($request->input('name')) {
+            $restdata->name = $request->input('name');
+        }
+        if ($request->input('message')) {
+            $restdata->message = $request->input('message');
+        }
+
+        $restdata->update();
+
+        return redirect()->route('rest.index');
     }
 
     /**
